@@ -1,22 +1,31 @@
 package Models;
 
+import android.net.Uri;
+
 import androidx.annotation.NonNull;
 
 public class Persona {
     private String nombres;
     private String apellidos;
+    private String sexo;
+    private String ciudad;
     private int edad;
     private String dni;
     private double peso;
     private double altura;
+    private Uri foto;
 
-    public Persona(String nombres, String apellidos, int edad, String dni, double peso, double altura) {
+    public Persona(String nombres, String apellidos, String sexo,String ciudad,
+                   int edad, String dni, double peso, double altura, Uri foto) {
         this.nombres = nombres;
         this.apellidos = apellidos;
+        this.sexo = sexo;
+        this.ciudad = ciudad;
         this.edad = edad;
         this.dni = dni;
         this.peso = peso;
         this.altura = altura;
+        this.foto = foto;
     }
     public int calcularIMC(){
         double par=peso/Math.pow(altura,2);

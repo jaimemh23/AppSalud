@@ -44,6 +44,39 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtNombres" />
 
+    <RadioGroup
+        android:id="@+id/rgSexo"
+        android:layout_width="171dp"
+        android:layout_height="99dp"
+        android:layout_marginTop="@dimen/separacion_v"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.385"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtApellidos">
+
+        <RadioButton
+            android:id="@+id/rbFemenino"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Femenino" />
+
+        <RadioButton
+            android:id="@+id/rbMasculino"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Masculino" />
+    </RadioGroup>
+
+    <Spinner
+        android:id="@+id/sp_ciudad"
+        android:layout_width="210dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="@dimen/separacion_v"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.469"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rgSexo" />
+
     <EditText
         android:id="@+id/txtEdad"
         android:layout_width="140dp"
@@ -53,9 +86,9 @@
         android:hint="Ingrese Edad"
         android:inputType="number"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.367"
+        app:layout_constraintHorizontal_bias="0.339"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtApellidos" />
+        app:layout_constraintTop_toBottomOf="@+id/sp_ciudad" />
 
     <EditText
         android:id="@+id/txtDNI"
@@ -111,9 +144,21 @@
             android:id="@+id/btnListar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:layout_margin="10dp"
+            android:layout_weight="1"
+            android:onClick="onClickListar"
             android:text="Listar" />
     </LinearLayout>
+
+    <ImageView
+        android:id="@+id/imgFoto"
+        android:layout_width="141dp"
+        android:layout_height="164dp"
+        android:layout_marginTop="@dimen/separacion_v"
+        android:scaleType="fitXY"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/txtDNI"
+        app:layout_constraintTop_toBottomOf="@+id/sp_ciudad"
+        app:srcCompat="@drawable/click" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
