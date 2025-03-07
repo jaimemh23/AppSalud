@@ -68,6 +68,10 @@ int contador;
             oIntento = new Intent(this,ActividadListarPersonas.class);
             startActivity(oIntento);
         }
+        if(item.getItemId()==R.id.itemLlamadas){
+            oIntento = new Intent(this,ActividadLlamadas.class);
+            startActivity(oIntento);
+        }
         return super.onOptionsItemSelected(item);
     }
 }

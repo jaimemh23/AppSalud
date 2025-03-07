@@ -18,6 +18,9 @@
     </item>
     <item android:title="Citas" />
     <item
+        android:id="@+id/itemLlamadas"
+        android:title="Llamadas" />
+    <item
         android:id="@+id/itemSalir"
         android:title="Salir" />
 </menu>
