@@ -1,5 +1,6 @@
 package pe.edu.unc.appsalud;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -37,6 +38,11 @@ public class ActividadListarPersonasAPI extends AppCompatActivity {
     }
 
     private void cargarPersonasAPI() {
+        ProgressDialog oProgreso = new ProgressDialog(this);
+        oProgreso.setMessage("Cargando Lista de Personas");
+        oProgreso.setCancelable(false); // no puede utilizar la interfaz
+        oProgreso.show();
+
         // crear un objeto de la interfaz apiServicio
         ApiServicioSalud oApiServicio = RetrofitClient.getClient().create(ApiServicioSalud.class);
         //llamar metodo get del Api
@@ -45,15 +51,16 @@ public class ActividadListarPersonasAPI extends AppCompatActivity {
             @Override
             public void onResponse(Call<List<PersonaAPI>> call, Response<List<PersonaAPI>> response) {
                 if(response.isSuccessful()){
+                    oProgreso.cancel();
                     List<PersonaAPI> lista = response.body();
-                   lvListaPersonas.setAdapter( new ArrayAdapter<PersonaAPI>(ActividadListarPersonasAPI.this,
-                           android.R.layout.simple_list_item_1,
-                           lista));
+                   lvListaPersonas.setAdapter(new AdaptadorPersonasAPI(
+                           ActividadListarPersonasAPI.this,lista));
                 }
             }
 
             @Override
             public void onFailure(Call<List<PersonaAPI>> call, Throwable t) {
+                oProgreso.cancel();
                 Toast.makeText(ActividadListarPersonasAPI.this,
                         "Error API: "+t.getMessage(),
                         Toast.LENGTH_LONG).show();

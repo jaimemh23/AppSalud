@@ -1,8 +1,10 @@
 package pe.edu.unc.appsalud;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -12,6 +14,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,6 +38,13 @@ int contador;
         SharedPreferences oFlujo = getSharedPreferences("control", Context.MODE_PRIVATE);
         contador = oFlujo.getInt("contar",1);
         lbContar.setText("N° ingresos "+contador);
+        //Solicitar Permiso para que el usuario pueda aprobar o denegar
+        if(ContextCompat.checkSelfPermission
+                (this, Manifest.permission.READ_EXTERNAL_STORAGE)==
+                PackageManager.PERMISSION_DENIED){
+            ActivityCompat.requestPermissions(this,
+                    new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},0);
+        }
     }
 
     @Override
