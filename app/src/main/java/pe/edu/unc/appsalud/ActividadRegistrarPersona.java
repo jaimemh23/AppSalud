@@ -1,5 +1,6 @@
 package pe.edu.unc.appsalud;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -13,9 +14,12 @@ import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -25,7 +29,7 @@ import java.util.List;
 
 import Models.Persona;
 
-public class MainActivity extends AppCompatActivity {
+public class ActividadRegistrarPersona extends AppCompatActivity {
     EditText txtNombres,txtApellidos,txtEdad,txtDNI;
     EditText txtPeso,txtAltura;
     RadioGroup rgSexo;
@@ -38,13 +42,11 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_main);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
+        setContentView(R.layout.ly_registrar_personas);
+        Toolbar oBarra = findViewById(R.id.tbRegistrarPersonas);
+        setSupportActionBar(oBarra);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         txtNombres = findViewById(R.id.txtNombres);
         txtApellidos=findViewById(R.id.txtApellidos);
         rgSexo = findViewById(R.id.rgSexo);
@@ -117,12 +119,35 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this, "Registro correcto "+
                      oPersona.toString(),Toast.LENGTH_SHORT).show();
             listaPersonas.add(oPersona);
-            limpiar();
+            cuadroDialogo();
+            //limpiar();
         }else
         {Toast.makeText(this, "No se registró DNI inválido",
                 Toast.LENGTH_SHORT).show();
             txtDNI.requestFocus();
         }
+    }
+
+    private void cuadroDialogo() {
+        AlertDialog.Builder oDialogo = new AlertDialog.Builder(this);
+        oDialogo.setTitle("Aviso");
+        oDialogo.setMessage("¿Desea seguir registrando?");
+        oDialogo.setIcon(R.drawable.baseline_add_alert_24);
+        oDialogo.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+                ActividadRegistrarPersona.this.finish();
+            }
+        });
+        oDialogo.setPositiveButton("Si", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                limpiar();
+            }
+        });
+        oDialogo.create();
+        oDialogo.show();
     }
 
     private boolean validarControles() {
