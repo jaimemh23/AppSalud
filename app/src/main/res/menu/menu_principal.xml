@@ -8,11 +8,17 @@
                 <item
                     android:id="@+id/itemRegistrarPersonas"
                     android:title="Registrar" />
+                <item
+                    android:id="@+id/itemRegistrarPersonaAPI"
+                    android:title="Registrar Persona API" />
                 <item android:title="Actualizar" />
                 <item android:title="Eliminar" />
                 <item
                     android:id="@+id/itemListarPersonas"
                     android:title="Listar" />
+                <item
+                    android:id="@+id/itemListaPersonaAPI"
+                    android:title="Lista Personas API" />
             </group>
         </menu>
     </item>

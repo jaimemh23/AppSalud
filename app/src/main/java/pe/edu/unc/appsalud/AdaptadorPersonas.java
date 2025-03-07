@@ -66,7 +66,7 @@ public class AdaptadorPersonas extends BaseAdapter {
             imgSexo.setImageResource(R.drawable.masculino);
         lbProcedencia.setText(oP.getCiudad());
         //imgFoto.setImageURI(oP.getFoto());
-        imgFoto.setImageBitmap(convertirBitMap(oP.getFoto()));
+        imgFoto.setImageBitmap(convertirBitMap(oP.getImgFoto()));
         return vista;
     }
 

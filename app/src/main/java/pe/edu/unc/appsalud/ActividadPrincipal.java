@@ -64,8 +64,22 @@ int contador;
             oIntento = new Intent(this, ActividadRegistrarPersona.class);
             startActivity(oIntento);
         }
+        if(item.getItemId()==R.id.itemRegistrarPersonaAPI)
+        {
+            oIntento = new Intent(this, ActividadRegistrarPersonaAPI.class);
+            startActivity(oIntento);
+        }
+        if(item.getItemId()==R.id.itemRegistrarPersonaAPI)
+        {
+            oIntento = new Intent(this, ActividadRegistrarPersonaAPI.class);
+            startActivity(oIntento);
+        }
         if(item.getItemId()==R.id.itemListarPersonas){
             oIntento = new Intent(this,ActividadListarPersonas.class);
+            startActivity(oIntento);
+        }
+        if(item.getItemId()==R.id.itemListaPersonaAPI){
+            oIntento = new Intent(this,ActividadListarPersonasAPI.class);
             startActivity(oIntento);
         }
         if(item.getItemId()==R.id.itemLlamadas){

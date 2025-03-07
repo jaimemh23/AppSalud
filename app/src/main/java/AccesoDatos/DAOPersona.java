@@ -33,7 +33,7 @@ public class DAOPersona {
             oColumnas.put("dni",oP.getDni());
             oColumnas.put("peso",oP.getPeso());
             oColumnas.put("altura",oP.getAltura());
-            oColumnas.put("foto",oP.getFoto());
+            oColumnas.put("foto",oP.getImgFoto());
             long fila= oBD.insert("Persona",null,oColumnas);
             if (fila>0){
                 rpta = true;

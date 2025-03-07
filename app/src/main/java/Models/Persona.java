@@ -5,15 +5,15 @@ import android.net.Uri;
 import androidx.annotation.NonNull;
 
 public class Persona {
-    private String nombres;
-    private String apellidos;
-    private String sexo;
-    private String ciudad;
-    private int edad;
-    private String dni;
-    private double peso;
-    private double altura;
-    private byte[] foto;
+    protected String nombres;
+    protected String apellidos;
+    protected String sexo;
+    protected String ciudad;
+    protected int edad;
+    protected String dni;
+    protected double peso;
+    protected double altura;
+    private byte[] imgFoto;
 
     public Persona(String nombres, String apellidos, String sexo,String ciudad,
                    int edad, String dni, double peso, double altura, byte[] foto) {
@@ -25,7 +25,21 @@ public class Persona {
         this.dni = dni;
         this.peso = peso;
         this.altura = altura;
-        this.foto = foto;
+        this.imgFoto = foto;
+    }
+    public Persona(String nombres, String apellidos, String sexo,String ciudad,
+                   int edad, String dni, double peso, double altura) {
+        this.nombres = nombres;
+        this.apellidos = apellidos;
+        this.sexo = sexo;
+        this.ciudad = ciudad;
+        this.edad = edad;
+        this.dni = dni;
+        this.peso = peso;
+        this.altura = altura;
+    }
+    public Persona(){
+
     }
 
     public String getNombres() {
@@ -40,8 +54,8 @@ public class Persona {
         return dni;
     }
 
-    public byte[] getFoto() {
-        return foto;
+    public byte[] getImgFoto() {
+        return imgFoto;
     }
 
     public String getNombreCompleto(){
