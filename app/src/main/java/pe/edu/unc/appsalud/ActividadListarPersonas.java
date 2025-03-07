@@ -25,7 +25,8 @@ public class ActividadListarPersonas extends AppCompatActivity {
             return insets;
         });
         ListView lvListaPersonas = findViewById(R.id.lvListaPersonas);
-        lvListaPersonas.setAdapter(new ArrayAdapter<Persona>(this,
-                android.R.layout.simple_list_item_1, ActividadRegistrarPersona.listaPersonas));
+        //lvListaPersonas.setAdapter(new ArrayAdapter<Persona>(this,
+        //        android.R.layout.simple_list_item_1, ActividadRegistrarPersona.listaPersonas));
+        lvListaPersonas.setAdapter(new AdaptadorPersonas(ActividadPrincipal.listaPersonas,this));
     }
 }

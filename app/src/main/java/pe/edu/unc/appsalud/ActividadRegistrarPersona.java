@@ -36,7 +36,7 @@ public class ActividadRegistrarPersona extends AppCompatActivity {
     Spinner sp_ciudad;
     ImageView imgFoto;
     Button btnRegistrar,btnListar;
-    public static List<Persona> listaPersonas;
+
     String[] ciudades={"Seleccionar ciudad","Cajamarca","Trujillo","Chiclayo"};
     Uri imgSeleccionado=null;
     @Override
@@ -73,7 +73,7 @@ public class ActividadRegistrarPersona extends AppCompatActivity {
                 registrarPersona();
             }
         });
-        listaPersonas = new ArrayList<>();
+
     }
 
     private void seleccionarFoto() {
@@ -118,7 +118,8 @@ public class ActividadRegistrarPersona extends AppCompatActivity {
         {
             Toast.makeText(this, "Registro correcto "+
                      oPersona.toString(),Toast.LENGTH_SHORT).show();
-            listaPersonas.add(oPersona);
+            //listaPersonas.add(oPersona);
+            ActividadPrincipal.listaPersonas.add(oPersona);
             cuadroDialogo();
             //limpiar();
         }else

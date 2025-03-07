@@ -10,8 +10,13 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-public class ActividadPrincipal extends AppCompatActivity {
+import java.util.ArrayList;
+import java.util.List;
 
+import Models.Persona;
+
+public class ActividadPrincipal extends AppCompatActivity {
+public static List<Persona> listaPersonas = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

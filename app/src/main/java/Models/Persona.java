@@ -27,6 +27,25 @@ public class Persona {
         this.altura = altura;
         this.foto = foto;
     }
+    public Uri getFoto(){
+        return foto;
+    }
+    public String getNombreCompleto(){
+        return apellidos+", "+nombres;
+    }
+    public String getTipoPeso(){
+        String[] tipoPeso ={"debajo de ideal","ideal","sobre ideal"};
+        return tipoPeso[calcularIMC()+1];
+    }
+    public String getTipoPersona(){
+        return esMayorEdad()?"mayor de edad":"menor de edad";
+    }
+    public String getSexo(){
+        return sexo;
+    }
+    public String getCiudad(){
+        return ciudad;
+    }
     public int calcularIMC(){
         double par=peso/Math.pow(altura,2);
         if(par<20)
