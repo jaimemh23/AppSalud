@@ -10,6 +10,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import AccesoDatos.DAOPersona;
 import Models.Persona;
 
 public class ActividadListarPersonas extends AppCompatActivity {
@@ -27,6 +28,8 @@ public class ActividadListarPersonas extends AppCompatActivity {
         ListView lvListaPersonas = findViewById(R.id.lvListaPersonas);
         //lvListaPersonas.setAdapter(new ArrayAdapter<Persona>(this,
         //        android.R.layout.simple_list_item_1, ActividadRegistrarPersona.listaPersonas));
-        lvListaPersonas.setAdapter(new AdaptadorPersonas(ActividadPrincipal.listaPersonas,this));
+        DAOPersona oDAOPersona = new DAOPersona();
+        oDAOPersona.cagarLista(this);
+        lvListaPersonas.setAdapter(new AdaptadorPersonas(oDAOPersona,this));
     }
 }

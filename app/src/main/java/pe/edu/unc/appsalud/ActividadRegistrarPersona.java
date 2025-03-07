@@ -2,6 +2,7 @@ package pe.edu.unc.appsalud;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -24,9 +25,12 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+import AccesoDatos.DAOPersona;
 import Models.Persona;
 
 public class ActividadRegistrarPersona extends AppCompatActivity {
@@ -38,7 +42,7 @@ public class ActividadRegistrarPersona extends AppCompatActivity {
     Button btnRegistrar,btnListar;
 
     String[] ciudades={"Seleccionar ciudad","Cajamarca","Trujillo","Chiclayo"};
-    Uri imgSeleccionado=null;
+    byte[] imgSeleccionado=null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -91,8 +95,16 @@ public class ActividadRegistrarPersona extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, oIntento);
         if(requestCode==100){
             if(resultCode==RESULT_OK){
-                imgSeleccionado=oIntento.getData();
-                imgFoto.setImageURI(imgSeleccionado);
+                //imgSeleccionado=oIntento.getData();
+                Uri foto = oIntento.getData();
+                imgFoto.setImageURI(foto);
+                imgFoto.buildDrawingCache();
+                Bitmap oBitMap = imgFoto.getDrawingCache();
+                ByteArrayOutputStream oFlujoSalida = new ByteArrayOutputStream();
+
+                oBitMap.compress(Bitmap.CompressFormat.PNG,0,oFlujoSalida);
+                imgSeleccionado = oFlujoSalida.toByteArray();
+
             }
         }
     }
@@ -116,11 +128,13 @@ public class ActividadRegistrarPersona extends AppCompatActivity {
         //Se registre si el dni es válido
         if(oPersona.verificarDNI())
         {
-            Toast.makeText(this, "Registro correcto "+
-                     oPersona.toString(),Toast.LENGTH_SHORT).show();
             //listaPersonas.add(oPersona);
-            ActividadPrincipal.listaPersonas.add(oPersona);
-            cuadroDialogo();
+            //ActividadPrincipal.listaPersonas.add(oPersona);
+            DAOPersona oDAOPersona = new DAOPersona();
+            if(oDAOPersona.Agregar(this,oPersona))
+                cuadroDialogo();
+            else
+                Toast.makeText(this, "No se registró", Toast.LENGTH_SHORT).show();
             //limpiar();
         }else
         {Toast.makeText(this, "No se registró DNI inválido",

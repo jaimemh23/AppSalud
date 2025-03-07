@@ -13,10 +13,10 @@ public class Persona {
     private String dni;
     private double peso;
     private double altura;
-    private Uri foto;
+    private byte[] foto;
 
     public Persona(String nombres, String apellidos, String sexo,String ciudad,
-                   int edad, String dni, double peso, double altura, Uri foto) {
+                   int edad, String dni, double peso, double altura, byte[] foto) {
         this.nombres = nombres;
         this.apellidos = apellidos;
         this.sexo = sexo;
@@ -27,9 +27,23 @@ public class Persona {
         this.altura = altura;
         this.foto = foto;
     }
-    public Uri getFoto(){
+
+    public String getNombres() {
+        return nombres;
+    }
+
+    public String getApellidos() {
+        return apellidos;
+    }
+
+    public String getDni() {
+        return dni;
+    }
+
+    public byte[] getFoto() {
         return foto;
     }
+
     public String getNombreCompleto(){
         return apellidos+", "+nombres;
     }
@@ -46,6 +60,19 @@ public class Persona {
     public String getCiudad(){
         return ciudad;
     }
+
+    public int getEdad() {
+        return edad;
+    }
+
+    public double getPeso() {
+        return peso;
+    }
+
+    public double getAltura() {
+        return altura;
+    }
+
     public int calcularIMC(){
         double par=peso/Math.pow(altura,2);
         if(par<20)
